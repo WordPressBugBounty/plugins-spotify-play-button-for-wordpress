@@ -1,11 +1,11 @@
 === Sp*tify Play Button for WordPress ===
 Contributors: jonkastonka
 Donate link: https://www.paypal.com/donate/?hosted_button_id=86UYSXNUA2LHY
-Tags: spotify, playlist, Spotify Play Button, Spotify Play Button for wordpress, embed, embed Spotify
-Requires at least: 4.0
-Tested up to: 6.4.3
-Requires PHP: 7.0
-Stable tag: 2.11
+Tags: spotify, Spotify Play Button, Spotify Play Button for wordpress, embed Spotify
+Requires at least: 5.0
+Tested up to: 6.7
+Requires PHP: 7.4
+Stable tag: 2.12
 
 == Description ==
 
@@ -76,6 +76,10 @@ None, yet.
 7. The global settings page
 
 == Changelog ==
+
+= 2.12 =
+* Security update
+* Update for new Spotify embed
 
 = 2.11 =
 * Security update

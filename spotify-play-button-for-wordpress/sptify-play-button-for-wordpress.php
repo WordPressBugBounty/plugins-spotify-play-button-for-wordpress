@@ -3,7 +3,7 @@
 * Plugin Name: Sp*tify Play Button for WordPress
 * Plugin URI: https://plugins.followmedarling.se/spotify-play-button-for-wordpress/
 * Description: Show Spotify Play Button in any page or post with a Gutenberg block, or with a simple hook (visit https://plugins.followmedarling.se/spotify-play-button-for-wordpress/ for examples).
-* Version: 2.11
+* Version: 2.12
 * Author: Jonk @ Follow me Darling
 * Author URI: https://plugins.followmedarling.se/
 * Domain Path: /languages
@@ -119,6 +119,9 @@ function spotifyplaybutton_func( $atts ) {
 	} else {
 		if ($size == 0) {
 			$height = '500';
+			if ( strpos( $play, 'track' ) !== false ) {
+				$height = '352';
+			}
 		} else {
 			$height = $size+80;
 		}
@@ -132,19 +135,21 @@ function spotifyplaybutton_func( $atts ) {
 			$url = str_replace( "spotify/", "https://open.spotify.com/", $url );
 		}
 		$url = esc_url( $url );
-		$open_spotify_link = "<p><a href=\"" . $url . "\" target=\"_blank\">" . __("Open in Spotify", "sptifyplaybutton_text") . "</a></p>";
+		$open_spotify_link = "<p><a href=\"" . esc_url( $url ) . "\" target=\"_blank\">" . __("Open in Spotify", "sptifyplaybutton_text") . "</a></p>";
 	}
 	if ( strpos( $play, 'https://' ) !== false ) {
+		$play = str_replace( "https://open.spotify.com/", "https://open.spotify.com/embed/", $play );
+			$play = esc_attr( $play );
+	} else {
 		$play = str_replace( "https://open.spotify.com/", "spotify:", $play );
 		$play = str_replace( "/", ":", $play );
-	} else {
-		$play = esc_attr( $play );
 	}
+	$play = esc_url( $play );
 	$width = esc_attr( $width );
 	$height = esc_attr( $height );
 	$min_height = esc_attr( $min_height );
 
-	return "<iframe src=\"https://open.spotify.com/embed/?uri={$play}\" width=\"{$width}\" height=\"{$height}\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\" style=\"max-width:{$width}px;max-height:{$height}px;{$min_height}\"></iframe>" . $open_spotify_link;
+	return '<iframe style="max-height:' . $height . 'px;" src="' . $play . '?utm_source=generator" width="' . $width . '" height="' . $height . '" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>' . $open_spotify_link;
 }
 add_shortcode( 'spotifyplaybutton', 'spotifyplaybutton_func' );
 

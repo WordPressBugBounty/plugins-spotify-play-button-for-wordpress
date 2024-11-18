@@ -2,8 +2,8 @@
 /**
 * Plugin Name: Sp*tify Play Button for WordPress
 * Plugin URI: https://plugins.followmedarling.se/spotify-play-button-for-wordpress/
-* Description: Show Spotify Play Button in any page or post with a Gutenberg block, or with a simple hook (visit https://plugins.followmedarling.se/spotify-play-button-for-wordpress/ for examples).
-* Version: 2.12
+* Description: Spotify Play Button block and shortcode for any type of embed from Spotify (visit https://plugins.followmedarling.se/spotify-play-button-for-wordpress/ for examples).
+* Version: 2.13
 * Author: Jonk @ Follow me Darling
 * Author URI: https://plugins.followmedarling.se/
 * Domain Path: /languages
@@ -139,10 +139,11 @@ function spotifyplaybutton_func( $atts ) {
 	}
 	if ( strpos( $play, 'https://' ) !== false ) {
 		$play = str_replace( "https://open.spotify.com/", "https://open.spotify.com/embed/", $play );
-			$play = esc_attr( $play );
+		// $play = esc_attr( $play );
 	} else {
-		$play = str_replace( "https://open.spotify.com/", "spotify:", $play );
-		$play = str_replace( "/", ":", $play );
+		$play = str_replace( "spotify:", "https://open.spotify.com/embed/", $play );
+		$play = str_replace( ":", "/", $play );
+		$play = str_replace( "///", "://", $play );
 	}
 	$play = esc_url( $play );
 	$width = esc_attr( $width );

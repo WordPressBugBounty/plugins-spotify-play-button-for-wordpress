@@ -2,10 +2,13 @@
 Contributors: jonkastonka
 Donate link: https://www.paypal.com/donate/?hosted_button_id=86UYSXNUA2LHY
 Tags: spotify, Spotify Play Button, Spotify Play Button for wordpress, embed Spotify
+Short Description: Spotify Play Button block and shortcode for any type of embed from Spotify
 Requires at least: 5.0
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 2.12
+Stable tag: 2.13
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
@@ -76,6 +79,9 @@ None, yet.
 7. The global settings page
 
 == Changelog ==
+
+= 2.13 =
+* Bug fix for old style embeds
 
 = 2.12 =
 * Security update
